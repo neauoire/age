@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Age</title>
+</head>
+<body>
+  <script>
+    'use strict'
+    if(!window.location.hash){
+      window.location.hash = "1986-03-22"
+    }
+    function update () {
+      _el.textContent = `${((new Date()-new Date(window.location.hash.replace("#","")))/31557600000).toFixed(9)}`
+    }
+    function start () {
+      setTimeout(() => { update(); requestAnimationFrame(start); }, 1000/30);
+    }
+    const _el = document.createElement('div')
+    document.body.appendChild(_el);
+    start();
+  </script>
+  <style>
+    @font-face { font-family: 'archivo_thin'; src: url('archivo_thin.ttf') format('truetype'); font-weight: normal; font-style: normal; }
+    body { background:black; color:white; text-align: center; padding-top:40vh; font-size:60px; font-family: 'archivo_thin'; letter-spacing: -4px; }
+  </style>
+</body>
+</html>
